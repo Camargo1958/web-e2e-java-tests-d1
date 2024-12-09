@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import page_objects.LoginPageObject;
 import page_objects.ProductPageObject;
 
-public class ProductPageTests extends BaseTest{
+public class ProductsPageTests extends BaseTest{
 
     LoginPageObject loginPageObject;
     ProductPageObject productPageObject;
