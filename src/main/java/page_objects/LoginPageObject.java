@@ -16,10 +16,18 @@ public class LoginPageObject  extends WebElementsInteractions {
         super(driver);
     }
 
-    public void userLogin(String username, String password) {
+//    public void userLogin(String username, String password) {
+//        goToApplication("https://www.saucedemo.com");
+//        sendText(userNameTextField, username);
+//        sendText(passwordTextField, password);
+//        clickElement(loginBtn);
+//    }
+
+    public ProductPageObject userLogin(String username, String password) {
         goToApplication("https://www.saucedemo.com");
         sendText(userNameTextField, username);
         sendText(passwordTextField, password);
         clickElement(loginBtn);
+        return new ProductPageObject(driver);
     }
 }

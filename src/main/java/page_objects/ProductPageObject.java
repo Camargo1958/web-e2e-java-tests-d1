@@ -14,8 +14,14 @@ public class ProductPageObject extends WebElementsInteractions {
 
     //WebDriver driver;
     private final By getTitleOfProductPage = By.xpath("//span[contains(text(), 'Products')]");
+    private final By getTextOfFirstItem = By.xpath("//a[@id='item_4_title_link']/div");
+
 
     public String getTitleOfPage() {
-        return retriveTextdata(getTitleOfProductPage);
+        return retrieveTextData(getTitleOfProductPage);
+    }
+
+    public String getItemName() {
+        return retrieveTextData(getTextOfFirstItem);
     }
 }
