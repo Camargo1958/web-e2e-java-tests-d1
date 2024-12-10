@@ -20,15 +20,16 @@ public class BaseTest {
     @Parameters({"browserName"})
     @BeforeTest
     public void setupTest(@Optional String browserName) {
-        //browser = AppConstants.browserName;
+//        browser = AppConstants.browserName;
 //        ChromeOptions co = new ChromeOptions();
 //        FirefoxOptions fo = new FirefoxOptions();
         if(browserName!=null) {
             browser = browserName;
-            System.out.println("Browser name is: "+browser);
         } else {
             browser=AppConstants.browserName;
         }
+
+        System.out.println("Browser name is: "+browser);
 
         if(browser.equalsIgnoreCase("chrome")) {
             if(AppConstants.platform.equalsIgnoreCase("local")) {
