@@ -9,7 +9,8 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.bouncycastle.util.test.SimpleTestResult;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,6 +22,7 @@ import org.testng.annotations.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
 import static utils.ExtentReportHelper.getReportObject;
 
 public class BaseTest {
@@ -30,6 +32,8 @@ public class BaseTest {
 
     protected static ThreadLocal<ExtentTest> testLogger = new ThreadLocal<>();
     private static final ExtentReports reports = getReportObject();
+
+    private static final Logger logger = LogManager.getLogger(BaseTest.class);
 
     @Parameters({"browserName"})
     @BeforeMethod
@@ -43,7 +47,7 @@ public class BaseTest {
             browser=AppConstants.browserName;
         }
 
-        System.out.println("Browser name is: "+browser);
+        logger.info("Browser name is: "+browser);
 
         if(browser.equalsIgnoreCase("chrome")) {
             if(AppConstants.platform.equalsIgnoreCase("local")) {
@@ -61,7 +65,7 @@ public class BaseTest {
             }
         }
 
-        else {System.out.println("Browser name entered is not supported!!!");}
+        else {logger.info("Invalid Browser Name");}
 
         ExtentTest test = reports.createTest(iTestResult.getMethod().getMethodName());
         testLogger.set(test);
