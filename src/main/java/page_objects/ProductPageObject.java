@@ -14,8 +14,8 @@ public class ProductPageObject extends WebElementsInteractions {
 
     //WebDriver driver;
     private final By getTitleOfProductPage = By.xpath("//span[contains(text(), 'Products')]");
+    //private final By getTextOfFirstItem = By.xpath("//a[@id='item_111_title_link']/div"); // For fail test
     private final By getTextOfFirstItem = By.xpath("//a[@id='item_4_title_link']/div");
-
 
     public String getTitleOfPage() {
         return retrieveTextData(getTitleOfProductPage);
