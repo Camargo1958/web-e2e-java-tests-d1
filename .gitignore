@@ -41,4 +41,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Others ###
 /reports
+/screenshot
+
