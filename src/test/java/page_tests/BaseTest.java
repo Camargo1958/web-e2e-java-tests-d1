@@ -11,15 +11,18 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.time.LocalDate;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 
 
@@ -38,9 +41,10 @@ public class BaseTest {
     @Parameters({"browserName"})
     @BeforeMethod
     public void setupTest(@Optional String browserName, ITestResult iTestResult) {
-//        browser = AppConstants.browserName;
-//        ChromeOptions co = new ChromeOptions();
-//        FirefoxOptions fo = new FirefoxOptions();
+
+        ChromeOptions co = new ChromeOptions();
+        FirefoxOptions fo = new FirefoxOptions();
+
         if(browserName!=null) {
             browser = browserName;
         } else {
@@ -54,6 +58,18 @@ public class BaseTest {
                 //co.addArguments("--remote-allow-origins=*");
                 WebDriverManager.chromedriver().setup();
                 this.driver = new ChromeDriver();
+            } else if(AppConstants.platform.equalsIgnoreCase("remote")) {
+                co.setPlatformName("linux");
+                co.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                //co.addArguments("--remote-allow-origins=*");
+                try {
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co);
+                    //driver = new RemoteWebDriver(new URL("http://192.168.201.3:4444/wd/hub"), co);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                logger.error("Platform not supported!!");
             }
         }
 
@@ -62,6 +78,17 @@ public class BaseTest {
                 //fo.addArguments("--remote-allow-origins=*");
                 WebDriverManager.firefoxdriver().setup();
                 this.driver = new FirefoxDriver();
+            } else if(AppConstants.platform.equalsIgnoreCase("remote")) {
+                co.setPlatformName("linux");
+                co.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                try {
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444"), fo);
+                    //driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), fo);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                logger.error("Platform not supported!!");
             }
         }
 
