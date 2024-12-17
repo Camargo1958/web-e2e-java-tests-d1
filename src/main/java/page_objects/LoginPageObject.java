@@ -26,8 +26,16 @@ public class LoginPageObject  extends WebElementsInteractions {
     public ProductPageObject userLogin(String username, String password) {
         goToApplication("https://www.saucedemo.com");
         sendText(userNameTextField, username);
-        sendText(passwordTextField, password);
-        clickElement(loginBtn);
+        try {
+            Thread.sleep(4000);
+            sendText(passwordTextField, password);
+            Thread.sleep(4000);
+            clickElement(loginBtn);
+            Thread.sleep(4000);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         return new ProductPageObject(driver);
     }
 }
