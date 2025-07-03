@@ -63,8 +63,9 @@ public class BaseTest {
                 co.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 //co.addArguments("--remote-allow-origins=*");
                 try {
-                    driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), co);
-                    //driver = new RemoteWebDriver(new URL("http://192.168.201.3:4444/wd/hub"), co);
+                    //driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), co); // standalone
+                    //driver = new RemoteWebDriver(new URL("http://192.168.201.3:4444/wd/hub"), co); // hub
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co); // hub
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
@@ -82,8 +83,9 @@ public class BaseTest {
                 co.setPlatformName("linux");
                 co.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 try {
-                    driver = new RemoteWebDriver(new URL("http://localhost:4442"), fo);
-                    //driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), fo);
+                    //driver = new RemoteWebDriver(new URL("http://localhost:4442"), fo); // standalone
+                    //driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), fo); // hub
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), fo); // hub
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
