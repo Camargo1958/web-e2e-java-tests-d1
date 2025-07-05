@@ -90,6 +90,9 @@
           <version>2.22.1</version>
           <configuration>
             <suiteXmlFiles>
+              <systemPropertyVariables>
+                <browserName>chrome</browserName>
+              </systemPropertyVariables>
               <suiteXmlFile>${XmlFile}</suiteXmlFile>
             </suiteXmlFiles>
             <parallel>tests</parallel>
