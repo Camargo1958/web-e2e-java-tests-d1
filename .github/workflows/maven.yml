@@ -14,13 +14,10 @@ on:
       browsername:
         type: string
         description: 'Browser Name'
-        required: true
         default: 'chrome'
       xmlfilename:
         type: string
         description: 'XML File Name'
-        required: true
-        default: 'testng.xml'
   push:
     branches: [ "main" ]
   pull_request:
@@ -44,9 +41,8 @@ jobs:
     - name: Build using testng xml files
       run: >
         mvn clean test
-        -Dsurefire.suiteXmlFiles=${{ github.event.inputs.xmlfilename }}
+        -Dsurefire.suiteXmlFiles=${{ inputs.xmlfilename }}
         -Dmaven.test.failure.ignore=true
-        -Dbrowser=${{ github.event.inputs.browsername }}
 
 #     Report Generation
     - name: archive report artifact
