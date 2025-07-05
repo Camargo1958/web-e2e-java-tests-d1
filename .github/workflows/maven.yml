@@ -9,8 +9,8 @@
 name: Java CI with Maven
 
 env:
-  browserName: chrome
-  xmlfilename: testng.xml
+  browserName: 'chrome'
+  xmlfilename: 'testng.xml'
 on:
   workflow_dispatch:
     inputs:
