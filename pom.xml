@@ -89,10 +89,10 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
           <configuration>
+            <systemPropertyVariables>
+              <browserName>chrome</browserName>
+            </systemPropertyVariables>
             <suiteXmlFiles>
-              <systemPropertyVariables>
-                <browserName>chrome</browserName>
-              </systemPropertyVariables>
               <suiteXmlFile>${XmlFile}</suiteXmlFile>
             </suiteXmlFiles>
             <parallel>tests</parallel>
