@@ -45,7 +45,7 @@ jobs:
       run: >
         mvn clean test
         -Dsurefire.suiteXmlFiles=${{ github.event.inputs.xmlfilename }}
-        -Dmaven.test.failure.ignore=true  # Ignore test failures
+        -Dmaven.test.failure.ignore=true
         -Dbrowser=${{ github.event.inputs.browsername }}
 
 #     Report Generation
