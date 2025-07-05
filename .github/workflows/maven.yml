@@ -9,6 +9,18 @@
 name: Java CI with Maven
 
 on:
+  workflow_dispatch:
+    inputs:
+      browsername:
+        type: string
+        description: 'Browser Name'
+        required: true
+        default: 'chrome'
+      xmlfilename:
+        type: string
+        description: 'XML File Name'
+        required: true
+        default: 'testng.xml'
   push:
     branches: [ "main" ]
   pull_request:
@@ -30,4 +42,16 @@ jobs:
     #- name: Build with Maven
     #  run: mvn -B package --file pom.xml
     - name: Build using testng xml files
-      run: mvn clean test
+      run: >
+        mvn clean test
+        -Dsurefire.suiteXmlFiles=${{ github.event.inputs.xmlfilename }}
+        -Dmaven.test.failure.ignore=true  # Ignore test failures
+        -Dbrowser=${{ github.event.inputs.browsername }}
+
+#     Report Generation
+    - name: archive report artifact
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: sparkHTML
+        path: ./reports/*.html
