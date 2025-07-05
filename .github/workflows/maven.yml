@@ -42,8 +42,8 @@ jobs:
     - name: Build using testng xml files
       run: >
         mvn clean test
-        -Dsurefire.suiteXmlFiles=${{ github.event.inputs.xmlfilename }}
-        -DbrowserName=${{ github.event.inputs.browsername }}
+        -Dsurefire.suiteXmlFiles=${{inputs.xmlfilename}}
+        -DbrowserName=${{inputs.browsername}}
         -Dmaven.test.failure.ignore=true
 
 #     Report Generation
