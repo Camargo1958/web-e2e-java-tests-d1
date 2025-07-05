@@ -12,6 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       browsername:
+        required: true
         type: string
         description: 'Browser Name'
         default: 'chrome'
