@@ -73,7 +73,7 @@ public class BaseTest {
                     co.addArguments("--headless"); // for GitHub actions
                     co.addArguments("--disable-gpu");
                     co.addArguments("--no-sandbox");
-                    co.addArguments("--remote-allow-origins=*");
+                    //co.addArguments("--remote-allow-origins=*"); // not required for GitHub actions execution
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(co);
             } else {
@@ -100,7 +100,7 @@ public class BaseTest {
                 fo.addArguments("--headless"); // for GitHub actions
                 fo.addArguments("--disable-gpu");
                 fo.addArguments("--no-sandbox");
-                fo.addArguments("--remote-allow-origins=*");
+                //fo.addArguments("--remote-allow-origins=*"); // not required for GitHub actions execution
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver(fo);
             } else {
