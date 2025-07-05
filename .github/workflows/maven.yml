@@ -19,7 +19,7 @@ on:
       xmlfilename:
         type: string
         description: 'XML File Name'
-        #default: 'testng.xml'
+        default: 'testng.xml'
   push:
     branches: [ "main" ]
   pull_request:
