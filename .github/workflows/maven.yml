@@ -20,6 +20,9 @@ on:
         description: 'XML File Name'
         default: 'testng.xml'
   push:
+    env:
+      browserName: 'chrome'
+      xmlFileName: 'testng.xml'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
