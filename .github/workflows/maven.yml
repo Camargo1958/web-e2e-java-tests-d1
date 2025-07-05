@@ -8,6 +8,9 @@
 
 name: Java CI with Maven
 
+env:
+  browserName: chrome
+  xmlfilename: testng.xml
 on:
   workflow_dispatch:
     inputs:
@@ -20,9 +23,6 @@ on:
         description: 'XML File Name'
         default: 'testng.xml'
   push:
-    env:
-      browserName: 'chrome'
-      xmlFileName: 'testng.xml'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
