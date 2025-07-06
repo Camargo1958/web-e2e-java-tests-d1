@@ -40,11 +40,12 @@ jobs:
     #- name: Build with Maven
     #  run: mvn -B package --file pom.xml
     - name: Build using testng xml files
-      run: >
-        mvn clean test
-        -DbrowserName=${{github.event.inputs.browser}}
-        -Dsurefire.suiteXmlFiles=${{github.event.inputs.xmlfile}}
-        -Dmaven.test.failure.ignore=true
+      run: mvn -batch-mode --update-snapshots clean test -Dsurefire.suiteXmlFiles=${{github.event.inputs.xmlfile}} -Dmaven.test.failure.ignore=true
+#      run: >
+#        mvn clean test
+#        -browserName=${{github.event.inputs.browser}}
+#        -Dsurefire.suiteXmlFiles=${{github.event.inputs.xmlfile}}
+#        -Dmaven.test.failure.ignore=true
 
 #     Report Generation
     - name: archive report artifact
