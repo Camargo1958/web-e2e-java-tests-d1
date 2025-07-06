@@ -72,6 +72,7 @@ public class BaseTest {
             } else if(AppConstants.platform.equalsIgnoreCase("jenkins")) {
                 co.setPlatformName("linux");
                 co.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                co.addArguments("--remote-allow-origins=*");
                 try {
                     driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co); // jenkins
                 } catch (MalformedURLException e) {
@@ -107,6 +108,7 @@ public class BaseTest {
             } else if(AppConstants.platform.equalsIgnoreCase("jenkins")) {
                 fo.setPlatformName("linux");
                 fo.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                fo.addArguments("--remote-allow-origins=*");
                 try {
                     driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), fo); // jenkins
                 } catch (MalformedURLException e) {
