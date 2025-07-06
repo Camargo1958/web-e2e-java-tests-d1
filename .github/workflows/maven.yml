@@ -11,11 +11,11 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
     inputs:
-      browsername:
+      browser:
         type: string
         description: 'Browser Name'
         default: 'chrome'
-      xmlfilename:
+      xmlfile:
         type: string
         description: 'XML File Name'
         default: 'testng.xml'
@@ -41,9 +41,10 @@ jobs:
     #  run: mvn -B package --file pom.xml
     - name: Build using testng xml files
       run: >
-        mvn clean test
-        -DbrowserName=${{github.event.inputs.browsername}}
-        -Dsurefire.suiteXmlFiles=${{github.event.inputs.xmlfilename}}
+        mvn clean
+        mvn test
+        -DbrowserName=${{github.event.inputs.browser}}
+        -Dsurefire.suiteXmlFiles=${{github.event.inputs.xmlfile}}
         -Dmaven.test.failure.ignore=true
 
 #     Report Generation
