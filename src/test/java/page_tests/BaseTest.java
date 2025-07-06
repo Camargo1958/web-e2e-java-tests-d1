@@ -69,6 +69,14 @@ public class BaseTest {
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
+            } else if(AppConstants.platform.equalsIgnoreCase("jenkins")) {
+                co.setPlatformName("linux");
+                co.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                try {
+                    driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), co); // jenkins
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
             } else if(AppConstants.platform.equalsIgnoreCase("remote_git")) {
                     co.addArguments("--headless"); // for GitHub actions
                     co.addArguments("--disable-gpu");
@@ -93,6 +101,14 @@ public class BaseTest {
                     //driver = new RemoteWebDriver(new URL("http://localhost:4442"), fo); // standalone
                     //driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), fo); // hub
                     driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), fo); // hub
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if(AppConstants.platform.equalsIgnoreCase("jenkins")) {
+                fo.setPlatformName("linux");
+                fo.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                try {
+                    driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), fo); // jenkins
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
