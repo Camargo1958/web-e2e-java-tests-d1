@@ -73,7 +73,7 @@ public class BaseTest {
                 co.setPlatformName("linux");
                 co.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 try {
-                    driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), co); // jenkins
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co); // jenkins
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
@@ -108,7 +108,7 @@ public class BaseTest {
                 fo.setPlatformName("linux");
                 fo.setPageLoadStrategy(PageLoadStrategy.EAGER);
                 try {
-                    driver = new RemoteWebDriver(new URL("http://172.17.208.1:4444/wd/hub"), fo); // jenkins
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), fo); // jenkins
                 } catch (MalformedURLException e) {
                     throw new RuntimeException(e);
                 }
